@@ -14,7 +14,21 @@ function App() {
       <p className="App-intro">
         To get started, edit <code>src/App.js</code> and save to reload.
       </p>
-      <SearchBar />
+      <h2>Available users</h2>
+      <SearchBar onChange={(value) => {
+        this.setState({
+          searchText: value
+        });
+      }} />
+      <UserList users={this.getFilteredUserList()} onUserSelect={(selectedUser) => {
+        console.log("User selected in app", selectedUser);
+        this.setState({
+          selectedUserList:[
+            ...this.state.selectedUserList,
+            selectedUser
+          ]
+        })
+      }}
       <ListOfUsers />
     </div>
   );
